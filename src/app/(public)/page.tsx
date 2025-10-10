@@ -1,8 +1,12 @@
-import { getPosts } from '@/lib/post'
+import { getPosts,searchPosts } from '@/lib/post'
 import PostCard from '@/components/post/PostCard'
 import { Post } from '@/types/post'
+type SearchParams = { search? : string }
 
-export default async function PostsPage() {
+export default async function PostsPage(
+  {searchParams}: {searchParams: Promise<SearchParams>}
+) {
+  const query =await searchParams
   const posts=await getPosts() as Post[]
   return (
     <>
